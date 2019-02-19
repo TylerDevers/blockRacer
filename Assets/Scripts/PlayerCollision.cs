@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour {
 
 	public PlayerMovement playerMovement;
+	public LevelManager levelManager;
+
+	void Start()
+	{
+		levelManager = FindObjectOfType<LevelManager>();
+	}
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
@@ -12,6 +18,12 @@ public class PlayerCollision : MonoBehaviour {
 		if (collisionInfo.transform.tag == "Obstacle")
 		{
 			playerMovement.enabled = false;
+			Invoke("Reset", 2);
 		}
+	}
+
+	void Reset()
+	{
+		levelManager.RestartLevel();
 	}
 }

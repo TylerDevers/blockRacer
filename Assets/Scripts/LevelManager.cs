@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
-	void RestartLevel()
+	public void RestartLevel()
 	{
 	SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
