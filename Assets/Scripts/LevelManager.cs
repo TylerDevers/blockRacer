@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
+	public bool levelNotComplete = true;
+
 	public GameObject levelCompletedUI;
 	
 	public void RestartLevel()
@@ -12,6 +14,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void CompleteLevel()
 	{
+		levelNotComplete = false;
 		levelCompletedUI.SetActive(true);
 		Invoke("LoadNextLevel", 2);
 	}

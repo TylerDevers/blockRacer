@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void IfOffTrack()
 	{
-		if (transform.position.y < -4)
+		if (transform.position.y < -4 && levelManager.levelNotComplete)
 		{
 			levelManager.RestartLevel();	
 		}
