@@ -35,12 +35,12 @@ public class PlayerMovement : MonoBehaviour {
 			float touchPosition = myTouch.position.x;
 			if (touchPosition <= Screen.width/2)
 			{
-				Debug.Log("left touch");
+				// Debug.Log("left touch");
 				rb.AddForce(-transform.right * sideThrust * Time.deltaTime, ForceMode.VelocityChange);
 			}
 			else if (touchPosition > Screen.width/2)
 			{
-				Debug.Log("right touch");
+				// Debug.Log("right touch");
 				rb.AddForce(transform.right * sideThrust * Time.deltaTime, ForceMode.VelocityChange);
 			}
 		}
