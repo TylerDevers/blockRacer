@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
-	Rigidbody rb;
 	public int sideThrust = 20;
 	public int forwardThrust = 2000;
-	public LevelManager levelManager;
+	public Button leftButton, rightButton;
+	LevelManager levelManager;
+	Rigidbody rb;
+	Touch myTouch;
 
 	void Start () 
 	{
@@ -21,12 +24,27 @@ public class PlayerMovement : MonoBehaviour {
 
         Move();
 		IfOffTrack();
-
+		
     }
 
     private void Move()
     {
-        if (Input.GetKey(KeyCode.D))
+		if (Input.touchCount > 0)
+		{
+			myTouch = Input.GetTouch(0);
+			float touchPosition = myTouch.position.x;
+			if (touchPosition <= Screen.width/2)
+			{
+				Debug.Log("left touch");
+				rb.AddForce(-transform.right * sideThrust * Time.deltaTime, ForceMode.VelocityChange);
+			}
+			else if (touchPosition > Screen.width/2)
+			{
+				Debug.Log("right touch");
+				rb.AddForce(transform.right * sideThrust * Time.deltaTime, ForceMode.VelocityChange);
+			}
+		}
+        else if (Input.GetKey(KeyCode.D))
         {
             rb.AddForce(transform.right * sideThrust * Time.deltaTime, ForceMode.VelocityChange);
         }
@@ -43,5 +61,7 @@ public class PlayerMovement : MonoBehaviour {
 			levelManager.RestartLevel();	
 		}
 	}
+
+
 
 }
