@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Move()
     {
+		// touchscreen controls
 		if (Input.touchCount > 0)
 		{
 			myTouch = Input.GetTouch(0);
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
 				rb.AddForce(transform.right * sideThrust * Time.deltaTime, ForceMode.VelocityChange);
 			}
 		}
+		// keyboard controls
         else if (Input.GetKey(KeyCode.D))
         {
             rb.AddForce(transform.right * sideThrust * Time.deltaTime, ForceMode.VelocityChange);
